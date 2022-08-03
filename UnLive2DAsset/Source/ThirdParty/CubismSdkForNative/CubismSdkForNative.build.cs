@@ -85,7 +85,13 @@ public class CubismSdkForNative : ModuleRules
                 "armeabi-v7a",
                 "x86",
             };
-
+            
+            foreach (var Triplet in Triplets)
+            {
+                string LibPath = Path.Combine(CubismLibPath, "dll/android/", Triplet);
+                PublicAdditionalLibraries.Add(Path.Combine(LibPath, "libLive2DCubismCore.so"));
+            }
+            
             if (Target.bBuildEditor)
             {
                 foreach (var Triplet in Triplets)
